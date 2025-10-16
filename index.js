@@ -4,7 +4,7 @@ import session from "express-session";
 import HomeRoute from "./routes/home.js"
 import ProjectRoute from "./routes/project.js"
 import AuthRoute from "./routes/auth.js"
-import ExperienceRoute from "./routes/Experience.js"
+import ExperienceRoute from "./routes/experience.js"
 
 import hbs from "hbs";
 

@@ -55,13 +55,9 @@ export const insertProject = async (req, res) => {
       RETURNING *;
     `;
 
-    const values = [
-      title_project,
-      desk,
-      techs,
-      link_project,
-      `/uploads/${file.filename}`,
-    ];
+    const filePath = `/files/${file.filename}`;
+
+    const values = [title_project, desk, techs, link_project, filePath];
 
     const result = await pool.query(sql, values);
     console.log("data baru: ", result.rows[0]);
@@ -77,10 +73,11 @@ export const updateProject = async (req, res) => {
   const { title_project, desk, link_project, existingImage } = req.body;
 
   let imageUrl = null;
+
   if (req.file && req.file.filename) {
-    imageUrl = `/uploads/${req.file.filename}`;
+    imageUrl = `/files/${req.file.filename}`; // ✅ URL publik yang konsisten
   } else if (existingImage && existingImage.trim() !== "") {
-    imageUrl = existingImage;
+    imageUrl = existingImage; // pakai yang lama
   }
   
 

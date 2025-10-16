@@ -1,0 +1,92 @@
+.text-justify{
+    text-align: justify;
+}
+.object-fit-cover {
+    object-fit: cover;
+    object-position: center;
+}
+
+.link .link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.link button {
+    display: inline-block;
+    width: 120px;
+    height: 55px;
+    background-color: rgb(50, 194, 175);
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    border-width: 0px;
+    font-weight: bold;
+    box-shadow: 0px 0px 51px 5px rgba(11, 168, 142, 0.64);
+    -webkit-box-shadow: 0px 0px 51px 5px rgba(11, 168, 142, 0.64);
+    -moz-box-shadow: 0px 0px 51px 5px rgba(11, 168, 142, 0.64);
+}
+
+.link button:hover {
+    background-color: rgb(0, 102, 86);
+    cursor: pointer;
+}
+
+
+.btn-contact,
+.link a {
+    display: inline-block;
+    width: 150px;
+    padding: 14px 5px 15px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid rgb(50, 194, 175);
+    border-radius: 5px;
+    color: rgb(50, 194, 175);
+}
+
+.btn-contact:hover,
+.link a:hover {
+    background-color: rgb(50, 194, 175);
+    color: white;
+    cursor: pointer;
+}
+
+.btn-logout,
+ button {
+    display: inline-block;
+    width: 150px;
+    padding: 14px 5px 15px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid rgb(194, 50, 50);
+    border-radius: 5px;
+    color: rgb(194, 55, 50);
+}
+
+.btn-logout:hover,
+ button:hover {
+    background-color: rgb(194, 60, 50);
+    color: white;
+    cursor: pointer;
+}
+
+#sosmed {
+    font-size: 2.5rem;
+    display: flex;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+
+#sosmed a i {
+    color: rgb(50, 194, 175);
+}
+
+#sosmed a i:hover {
+    color: rgb(0, 102, 86);
+    cursor: pointer;
+}

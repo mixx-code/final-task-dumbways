@@ -1,0 +1,422 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Lexend+Deca:wght@100..900&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        #title {
+            font-family: "Comic Relief", system-ui;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .lexend-deca {
+            font-family: "Lexend Deca",
+                sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style:
+                normal;
+            font-size: 1.2rem;
+            margin-top: -10px;
+        }
+
+        .desk {
+            font-family:
+                "Lexend Deca", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.1rem;
+        }
+
+        .alamat,
+        .online-text {
+            font-family: "Lexend Deca", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1rem;
+            color: #5f5c5c;
+        }
+
+        .online {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #28a745;
+            border-radius: 50%;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+        .bg-img-marquee {
+            display: flex;
+            justify-content:
+                center;
+            padding: 10px;
+            background-color: white;
+            border-radius: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .gradient-marquee {
+            background: #ffffff;
+            background: linear-gradient(270deg, rgba(255, 255,
+                        255, 1) 1%, rgba(255, 255, 255, 0.9) 8%, rgba(255, 255, 255, 0) 20%,
+                    rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 0.9) 92%, rgba(255, 255,
+                        255, 1) 100%);
+            width: 93%;
+            height: 50%;
+            bottom: 50px;
+            position: absolute;
+            z-index: 1;
+        }
+    </style>
+    {{!
+    <link rel="stylesheet" href="../assets/css/style.css" /> }}
+    <title>WEB PORTOFOLIO | FINAL TASK</title>
+</head>
+
+<body>
+
+    <nav class="navbar sticky-top navbar-expand-lg bg-white dark:bg-dark">
+        <div class="container">
+
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <img src="../assets/images/logo.jpg" alt="Bootstrap" width="40" class="me-2" />
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="navbar-nav d-flex align-items-center gap-3">
+                    <a href="#tech"
+                        class="nav-link text-secondary link-dark link-underline-opacity-0 link-underline-opacity-100-hover">Tech
+                        Stack</a>
+                    <a href="#experiences"
+                        class="nav-link text-secondary link-dark link-underline-opacity-0 link-underline-opacity-100-hover">Experiences</a>
+                    <a href="#projects"
+                        class="nav-link text-secondary link-dark link-underline-opacity-0 link-underline-opacity-100-hover">Projects</a>
+                    <a href="{{ user.contact }}" target="_blank" class="btn" style="background-color: #22c55e; color: white;"><i class="fa-brands fa-whatsapp"></i> Let's Talk</a>
+                    <a href="{{ user.link_cv }}" target="_blank" class="btn btn-dark"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+                    {{#if userLogin}}
+                    <form action="/logout" method="post" style="margin-top: 15px;">
+                        <button type="submit" class="btn btn-outline-danger">Logout</button>
+                    </form>
+                    {{else}}
+                    <a href="/login" class="btn btn-outline-primary">Login</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="card border-0 mx-auto" style="max-width: 1100px;">
+            <div class="row g-4 align-items-center p-4 p-md-5 text-center text-lg-start justify-content-center">
+
+                <div class="col-12 col-sm-10 col-md-8 col-lg-4 order-1 order-lg-1 d-flex justify-content-center">
+                    <div class="ratio ratio-1x1 rounded overflow-hidden shadow" style="max-width: 300px;">
+                        <img src="../assets/images/pp.jpg" alt="Foto profil" class="w-100 h-100 object-fit-cover"
+                            loading="lazy" />
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-8 order-2 order-lg-2">
+                    <div class="card-body p-0">
+                        <h1 id="title" class="card-title mb-3 fw-bold fs-2 fs-lg-1">Halo
+                            Semua 👋</h1>
+                        <p class="lexend-deca text-dark-emphasis mb-1">{{ user.job }}</p>
+                        <p class="desk text-secondary-emphasis mb-4">{{ user.about }}</p>
+                        <p class="alamat mb-1">
+                            <i class="fa-solid fa-location-dot"></i>
+                            {{ user.alamat }}
+                        </p>
+                        <p class="online-text mb-4">
+                            <span class="online"></span>
+                            {{ user.available }}
+                        </p>
+                        <div
+                            class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-2">
+                            <a href="{{ user.contact }}" target="_blank" class="btn" style="background-color: #22c55e; color: white;"><i class="fa-brands fa-whatsapp"></i> Let's Talk</a>
+                            <a href="{{ user.link_cv }}" target="_blank" class="btn btn-dark"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tech" class="container  pt-5">
+        <div class="card border-0 mx-auto" style="max-width: 1100px;">
+            <div class="row g-4 align-items-center p-4 p-md-5 text-center text-lg-start justify-content-center">
+                <h1>Tech Stack - Tools I Use Everyday</h1>
+                <div class="gradient-marquee"></div>
+                <marquee behavior="alternate" loop="infinite" direction="right" scrollamount="4" style="width: 95%;">
+                    <div class="d-flex flex-row align-items-center gap-5">
+                        <div class="d-flex flex-column align-items-center gap-4 mx-3">
+                            <div class="bg-img-marquee shadow">
+                                <div
+                                    style="width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                                    <img src="../assets/images/marquee/express.png" width="50px" alt="" />
+                                </div>
+                            </div>
+                            <p>express</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-4 mx-3">
+                            <div class="bg-img-marquee shadow">
+                                <img src="../assets/images/marquee/javascript.png" width="50px" alt="" />
+                            </div>
+                            <p>javascript</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-4 mx-3">
+                            <div class="bg-img-marquee shadow">
+                                <img src="../assets/images/marquee/node.png" width="50px" alt="" />
+                            </div>
+                            <p>node.js</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-4 mx-3">
+                            <div class="bg-img-marquee shadow">
+                                <img src="../assets/images/marquee/postgre.png" width="50px" alt="" />
+                            </div>
+                            <p>postgreSQL</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-4 mx-3">
+                            <div class="bg-img-marquee shadow">
+                                <div
+                                    style="width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;">
+                                    <img src="../assets/images/marquee/tailwind.png" width="50px" alt="" />
+                                </div>
+                            </div>
+                            <p>tailwind</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-4 mx-3">
+                            <div class="bg-img-marquee shadow">
+                                <img src="../assets/images/marquee/typescript.png" width="50px" alt="" />
+                            </div>
+                            <p>typescript</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-4 mx-3">
+                            <div class="bg-img-marquee shadow">
+                                <img src="../assets/images/marquee/dotnet.png" width="50px" alt="" />
+                            </div>
+                            <p>.Net</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-4 mx-3">
+                            <div class="bg-img-marquee shadow">
+                                <img src="../assets/images/marquee/mongodb.png" width="50px" alt="" />
+                            </div>
+                            <p>mongodb</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-4 mx-3">
+                            <div class="bg-img-marquee shadow">
+                                <img src="../assets/images/marquee/react.png" width="50px" alt="" />
+                            </div>
+                            <p>react</p>
+                        </div>
+                        <div class="d-flex flex-column align-items-center gap-4 mx-3">
+                            <div class="bg-img-marquee shadow">
+                                <img src="../assets/images/marquee/next.png" width="50px" alt="" />
+                            </div>
+                            <p>next.js</p>
+                        </div>
+                    </div>
+                </marquee>
+            </div>
+        </div>
+    </div>
+
+    <div id="experiences" class="container pt-5 my-5">
+        <div class="card border-0 mx-auto" style="max-width: 1100px;">
+            <div class="row align-items-center p-4 p-md-5 text-center text-lg-start justify-content-center">
+                <div class="w-100 d-flex justify-content-between align-items-center">
+                    <h1>Work Experiences:</h1>
+                    {{#if userLogin}}
+                    <a class="btn btn-primary btn-sm rounded-5" href="/formExperience">Add <i class="fa-solid fa-plus"></i></a>
+                    {{/if}}
+                </div>
+                {{#if experiences.length}}
+                {{#each experiences}}
+                <div class="d-flex flex-row gap-5 mt-4 justify-content-between p-3 border-bottom mb-4">
+                    <div class="d-flex flex-row gap-3">
+                        <div>
+                            <img src="{{imageUrl}}" width="50" alt="{{perusahaan}}" />
+                        </div>
+                        <div style="max-width: 700px;" class="text-start">
+                            <p class="fs-4" style="margin-top:-10px">{{posisi}}</p>
+                            <p class="fs-6 text-success" style="margin-top:-20px">{{perusahaan}}</p>
+                            {{#if list_tasks.length}}
+                            <ul style="padding-left:20px" class="d-flex flex-column gap-2">
+                                {{#each list_tasks}}
+                                <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                            {{else}}
+                            <p class="text-muted fs-6">No tasks available</p>
+                            {{/if}}
+                            {{#if list_techs.length}}
+                            <div>
+                                {{#each list_techs}}
+                                <span class="badge rounded-pill text-bg-dark text-light p-2">{{this}}</span>
+                                {{/each}}
+                            </div>
+                            {{else}}
+                            <p class="text-muted fs-6">No technologies selected</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-between">
+                        <p class="fs-6" style="margin-top:-10px">{{start_date_fmt}} - {{end_date_fmt}}</p>
+                        {{#if @root.userLogin}}
+                        <div class="text-end p-3">
+                            <a class="fs-4" href="/formEditExperience/{{ id }}"><i
+                                    class="fa-solid fa-pen-to-square"></i></a>
+                            <form action="/deleteExperience/{{ id }}" method="POST" class="formDelete d-inline">
+                                <button type="submit" class="fs-4 text-danger border-0 bg-transparent" {{!--
+                                    onclick="return confirm('Kamu yakin mau hapus experience ini?')" --}}><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </form>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+                {{/each}}
+                {{else}}
+                <p class="fs-4">Belum ada data pengalaman kerja.</p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+
+    <div id="projects" style="min-height: 100%;" class="container pt-5 my-5">
+        <div class="card border-0 mx-auto" style="max-width: 1100px;">
+            <div class="row g-4 align-items-center p-4 p-md-5 text-center text-lg-start justify-content-center">
+                <div class="w-100 d-flex justify-content-between align-items-center">
+                    <h1>My Projects:</h1>
+                    {{#if userLogin}}
+                    <a class="btn btn-primary btn-sm rounded-5" href="/formProject">Add <i class="fa-solid fa-plus"></i></a>
+                    {{/if}}
+                </div>
+                <div class="w-100 d-flex flex-row flex-wrap gap-4 mt-4 justify-content-center justify-content-lg-between">
+                    {{#if projects.length}}
+                    {{#each projects}}
+                    <div class="card shadow-sm border-0" style="width: 27rem; min-height: 500px;">
+                        <img src="{{imageUrl}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{title_project}}</h5>
+                            <p class="card-text">{{ desk }}</p>
+                            <div class="d-flex flex-row flex-wrap gap-2 py-3">
+                                {{#if list_techs.length}}
+                                {{#each list_techs}}
+                                <span class="badge rounded-pill text-bg-dark text-light p-2">{{this}}</span>
+                                {{/each}}
+                                {{else}}
+                                <p class="text-muted fs-6">No technologies selected</p>
+                                {{/if}}
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <p class="mb-0 text-secondary"><i class="fa-brands fa-github"></i> Private Repository
+                                </p>
+                                <a href="{{link_project}}" target="_blank"
+                                    class="link-underline-opacity-0 link-underline-opacity-100-hover">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+                                </a>
+                            </div>
+                        </div>
+                        {{#if @root.userLogin}}
+                        <div class="text-end p-3">
+                            <a class="fs-4" href="/formEditProject/{{ id }}"><i
+                                    class="fa-solid fa-pen-to-square"></i></a>
+                            <form action="/deleteProject/{{ id }}" method="POST" class="formDelete d-inline">
+                                <button type="submit" class="fs-4 text-danger border-0 bg-transparent" {{!--
+                                    onclick="return confirm('Kamu yakin mau hapus project &quot;{{title_project}}&quot;?')"
+                                    --}}><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                        </div>
+                        {{/if}}
+                    </div>
+                    {{/each}}
+                    {{else}}
+                    <p class="fs-4">Belum ada data project.</p>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.2/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    {{!-- alert --}}
+    <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
+
+    if (msg) {
+        Swal.fire({
+        title: 'Sukses!',
+        text: decodeURIComponent(msg),
+        icon: 'success',
+        confirmButtonText: 'OK'
+        }).then(() => {
+            const url = new URL(window.location.href);
+            const newUrl = url.origin + url.pathname + url.hash;
+            window.history.replaceState({}, document.title, newUrl);
+        });
+    }
+    </script>
+
+    <script>
+        const forms = document.getElementsByClassName('formDelete');
+
+        Array.from(forms).forEach((form) => {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                Swal.fire({
+                    title: 'Apakah kamu yakin?',
+                    text: 'Kamu tidak akan bisa mengembalikan data ini!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

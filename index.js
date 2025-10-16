@@ -32,8 +32,9 @@ app.set("views", "src/views");
 
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/assets", express.static("src/assets"));
+// app.use("/assets", express.static("src/assets"));
 app.use("/uploads", express.static("uploads"));
+app.use("/public", express.static("public"));
 
 app.use(HomeRoute);
 app.use(ProjectRoute);

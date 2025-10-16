@@ -1,18 +1,18 @@
+import fs from "fs";
 import express from "express";
 import session from "express-session";
 import path from "path";
 import { fileURLToPath } from "url";
 
-import HomeRoute from "./routes/home.js"
-import ProjectRoute from "./routes/project.js"
-import AuthRoute from "./routes/auth.js"
-import ExperienceRoute from "./routes/experience.js"
+import HomeRoute from "./routes/home.js";
+import ProjectRoute from "./routes/project.js";
+import AuthRoute from "./routes/auth.js";
+import ExperienceRoute from "./routes/experience.js";
 
 import hbs from "hbs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 
 const app = express();
 const port = 3000;
@@ -62,4 +62,3 @@ app.use(ExperienceRoute);
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
 });
-

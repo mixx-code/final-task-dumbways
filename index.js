@@ -38,7 +38,20 @@ app.set("views", path.join(__dirname, "src/views"));
 app.use(express.urlencoded({ extended: false }));
 
 // app.use("/assets", express.static("src/assets"));
-app.use("/uploads", express.static("uploads"));
+
+if (process.env.NODE_ENV !== "production") {
+  app.use("/files", express.static(path.join(__dirname, "uploads")));
+}
+
+if (process.env.NODE_ENV === "production") {
+  app.get("/files/:name", (req, res) => {
+    const filePath = path.join("/tmp", req.params.name);
+    fs.access(filePath, fs.constants.R_OK, (err) => {
+      if (err) return res.sendStatus(404);
+      res.sendFile(filePath);
+    });
+  });
+}
 app.use(express.static("public"));
 
 app.use(HomeRoute);

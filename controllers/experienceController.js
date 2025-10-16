@@ -89,10 +89,7 @@ export const insertExperience = async (req, res) => {
       RETURNING *;
     `;
 
-    const filePath =
-      process.env.NODE_ENV === "production"
-        ? `/tmp/${file.filename}`
-        : `/uploads/${file.filename}`;
+    const filePath = `/files/${file.filename}`;
 
     const values = [
       filePath,
@@ -149,14 +146,11 @@ export const updateExperience = async (req, res) => {
     let imageUrl = null;
 
     if (req.file && req.file.filename) {
-      imageUrl =
-        process.env.NODE_ENV === "production"
-          ? `/tmp/${req.file.filename}`
-          : `/uploads/${req.file.filename}`;
+      imageUrl = `/files/${req.file.filename}`; // ✅ URL publik yang konsisten
     } else if (existingImage && existingImage.trim() !== "") {
-      imageUrl = existingImage;
+      imageUrl = existingImage; // pakai yang lama
     }
-  
+
     const sql = `
       UPDATE "work-experiences"
       SET

@@ -89,8 +89,13 @@ export const insertExperience = async (req, res) => {
       RETURNING *;
     `;
 
+    const filePath =
+      process.env.NODE_ENV === "production"
+        ? `/tmp/${file.filename}`
+        : `/uploads/${file.filename}`;
+
     const values = [
-      `/uploads/${file.filename}`,
+      filePath,
       posisi,
       perusahaan,
       start_date,
@@ -142,10 +147,14 @@ export const updateExperience = async (req, res) => {
     }
 
     let imageUrl = null;
+
     if (req.file && req.file.filename) {
-      imageUrl = `/uploads/${req.file.filename}`; // file baru
+      imageUrl =
+        process.env.NODE_ENV === "production"
+          ? `/tmp/${req.file.filename}`
+          : `/uploads/${req.file.filename}`;
     } else if (existingImage && existingImage.trim() !== "") {
-      imageUrl = existingImage; // pakai yang lama
+      imageUrl = existingImage;
     }
   
     const sql = `
